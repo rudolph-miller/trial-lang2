@@ -9,6 +9,7 @@ int main() {
   while (1) {
     line = readline("> ");
     if (line == NULL) break;
+    tl2_parse(line);
     printf("%s\n", line);
   };
 
