@@ -24,7 +24,7 @@ program
 datum
   : number
   | symbol
-  | dot_separated_symbols
+  | dotted
   | list
 ;
 
@@ -46,14 +46,10 @@ symbol
   }
 ;
 
-dot_separated_symbols
-  : symbol tDOT symbol
+dotted
+  : datum tDOT datum
   {
-    puts("dot_separated_symbols");
-  }
-  | symbol tDOT dot_separated_symbols
-  {
-    puts("dot_separated_symbols");
+    puts("dotted");
   }
 ;
 
