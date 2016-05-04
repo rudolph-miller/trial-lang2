@@ -47,7 +47,7 @@ symbol
 ;
 
 dotted
-  : datum tDOT datum
+  : datum tDOT symbol
   {
     puts("dotted");
   }
