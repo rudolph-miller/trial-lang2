@@ -1,5 +1,6 @@
 # Trial Lang 2
 
+
 ## Syntax
 
 ```lisp
@@ -62,4 +63,16 @@
 
 # make first character upper character to export
 (def (Sample:int) ...)
+```
+
+
+### def
+
+```
+# global variable
+(def a 1)
+
+# function
+(def (sample:int a:string)
+  (print "Hello") (print a) 1)
 ```
