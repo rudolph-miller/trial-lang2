@@ -4,22 +4,26 @@
 ## Syntax
 
 ```lisp
+# @ sub.lisp
+
 (package sub)
-=> sub
+# => sub
 
 (def (%add:int a:int b:int)
   (+ a b))
-=> %add
+# => %add
 
 (def (Add:int a:int b:int)
   (%add a b))
-=> Add
+# => Add
 ```
 
 ```lisp
+# @ main.lisp
+
 (package main)
 
-(import sub)
+(import "./sub.lisp")
 
 (def global-variable 1)
 
@@ -48,10 +52,10 @@
 (package main)
 
 # use other packages
-(import sub)
+(import "./sub")
 
 # use alias
-(import (:as sub sub2))
+(import (:as "./sub" sub2))
 
 # include all symbols into current package
 (import (:as sub .))
@@ -75,4 +79,40 @@
 # function
 (def (sample:int a:string)
   (print "Hello") (print a) 1)
+```
+
+
+### calling function
+
+```
+# @ sub.lisp
+
+(package sub)
+
+(def (Sample:int a:int b:int)
+  (+ a b))
+```
+
+```
+(package main)
+
+(import "./sub")
+
+# call function
+(print 1)
+
+# call function in other package
+(sub.Sample 1 2)
+
+# dot syntax sugar
+1.print
+# => (print 1)
+
+(defstruct sample
+  (a b))
+
+(def (add a:int b:int)
+  (+ a b))
+(1.add 2)
+# => (add 1 2)
 ```
