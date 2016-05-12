@@ -116,3 +116,31 @@
 (1.add 2)
 # => (add 1 2)
 ```
+
+
+### let
+
+```
+# assign
+(let ((a 1))
+  ...)
+
+# declare
+(let (a:int)
+  ...)
+
+# can use declared variable in the same `let'
+(let ((a 1)
+      (b a))
+  b # => 1)
+
+# destructuring
+
+(def a (cons 1 2))
+
+(def b #h(:a 1 :b 2))
+
+(let (((cons x1 y1) a)
+      (#h(:a x2 :b y2) b))
+  ...)
+```
