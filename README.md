@@ -4,22 +4,22 @@
 ## Syntax
 
 ```lisp
-# @ sub.lisp
+// @ sub.lisp
 
 (package sub)
-# => sub
+// => sub
 
 (def (%add:int a:int b:int)
   (+ a b))
-# => %add
+// => %add
 
 (def (Add:int a:int b:int)
   (%add a b))
-# => Add
+// => Add
 ```
 
 ```lisp
-# @ main.lisp
+// @ main.lisp
 
 (package main)
 
@@ -30,7 +30,7 @@
 (print (sub.Add global-variable 2))
 
 (defstruct sample
-  (a b))
+  (a:int b:int))
 
 (def (initialize self:sample a:int b:int)
   (set self.a a)
@@ -48,24 +48,24 @@
 ### package
 
 ```
-# declare current package
+// declare current package
 (package main)
 
-# use other packages
+// use other packages
 (import "./sub")
 
-# use alias
+// use alias
 (import (:as "./sub" sub2))
 
-# include all symbols into current package
+// include all symbols into current package
 (import (:as sub .))
 
-# can not assign to package
+// can not assign to package
 (let ((sub 1))
-  # => raise error `can not assign to sub:package`
+  // => raise error `can not assign to sub:package`
   ...)
 
-# make first character upper character to export
+// make first character upper character to export
 (def (Sample:int) ...)
 ```
 
@@ -73,19 +73,27 @@
 ### def
 
 ```
-# global variable
+// global variable
 (def a 1)
 
-# function
+// function
 (def (sample:int a:string)
   (print "Hello") (print a) 1)
+
+(def (sample2:int args...:int)
+  (print args)
+  (funcall #'+ args))
+
+(sample2 1 2 3)
+// (1 2 3)
+// => 6
 ```
 
 
 ### calling function
 
 ```
-# @ sub.lisp
+// @ sub.lisp
 
 (package sub)
 
@@ -98,43 +106,43 @@
 
 (import "./sub")
 
-# call function
+// call function
 (print 1)
 
-# call function in other package
+// call function in other package
 (sub.Sample 1 2)
 
-# dot syntax sugar
+// dot syntax sugar
 1.print
-# => (print 1)
+// => (print 1)
 
 (defstruct sample
-  (a b))
+  (a:int b:int))
 
 (def (add a:int b:int)
   (+ a b))
 (1.add 2)
-# => (add 1 2)
+// => (add 1 2)
 ```
 
 
 ### let
 
 ```
-# assign
+// assign
 (let ((a 1))
   ...)
 
-# declare
+// declare
 (let (a:int)
   ...)
 
-# can use declared variable in the same `let'
+// can use declared variable in the same `let'
 (let ((a 1)
       (b a))
-  b # => 1)
+  b // => 1)
 
-# destructuring
+// destructuring
 
 (def a (cons 1 2))
 
@@ -143,4 +151,32 @@
 (let (((cons x1 y1) a)
       (#h(:a x2 :b y2) b))
   ...)
+```
+
+
+### data structure
+
+```
+// cons
+(cons 1 2)
+(list 1 2 3)
+'(1 2 3)
+
+// array
+#a(1 2 3)
+#(array 1 2 3)
+
+// hash
+#h(:a 1 :b 2)
+#(hash :a 1 :b 2)
+
+// struct
+
+(defstruct sample
+  (a:int b:int))
+
+#(sample :a 1 :b 2)
+
+// class
+// TBD
 ```
