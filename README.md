@@ -48,7 +48,7 @@ This is just my trial.
 
 ### package
 
-```
+```lisp
 // declare current package
 (package main)
 
@@ -73,7 +73,7 @@ This is just my trial.
 
 ### def
 
-```
+```lisp
 // global variable
 (def a 1)
 
@@ -93,7 +93,7 @@ This is just my trial.
 
 ### calling function
 
-```
+```lisp
 // @ sub.lisp
 
 (package sub)
@@ -102,7 +102,7 @@ This is just my trial.
   (+ a b))
 ```
 
-```
+```lisp
 (package main)
 
 (import "./sub")
@@ -129,7 +129,7 @@ This is just my trial.
 
 ### let
 
-```
+```lisp
 // assign
 (let ((a 1))
   ...)
@@ -157,7 +157,7 @@ This is just my trial.
 
 ### data structure
 
-```
+```lisp
 // cons
 (cons 1 2)
 (list 1 2 3)
