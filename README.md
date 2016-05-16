@@ -1,6 +1,7 @@
 # Trial Lang 2
 
 This is just my trial.
+I will recreate this project.
 
 ## Syntax
 
