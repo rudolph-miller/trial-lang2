@@ -182,3 +182,14 @@ I will recreate this project.
 // class
 // TBD
 ```
+
+### comment
+
+```lisp
+// one line comment
+/*
+  some
+  lines
+  comment
+*/
+```
